@@ -27,13 +27,13 @@ As a student, I prefer dark-mode and find myself manually inverting images for m
     You can use the following command to add the alias to your configuration file, ensure you change the `<path/to/python-image-inverter>` with the correct absolute folder/dir path to the program:
 
     ```bash
-    echo pii="<path/to/python-image-inverter>/start.sh" >> ~.bashrc
+    cd ~ && echo pii="<path/to/python-image-inverter>/start.sh" >> .bashrc
     ```
 
     If you are using zsh:
-
+c
     ```bash
-    echo pii="<path/to/python-image-inverter>/start.sh" >> ~.zshrc
+    cd ~ && echo pii="<path/to/python-image-inverter>/start.sh" >> .zshrc
     ```
 
     Installation instructions for windows will be added soon.
