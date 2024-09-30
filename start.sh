@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Get the directory of this script, not where it is called from
 DIR="$(cd "$(dirname "$0")" && pwd)"
