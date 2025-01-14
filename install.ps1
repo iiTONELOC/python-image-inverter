@@ -44,23 +44,14 @@ Write-Host "Installing project requirements..."
 # Deactivate the virtual environment when done
 deactivate
 
-# Define a universal function for Windows systems, 
-$functionDefinition = @'
+# Define a universal function for Windows systems, this runs
+# the Python script from the created virtual environment
+# there is no need to activate the virtual environment and deactivate it after
+$functionDefinition = @"
 function pii {
-    $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
-    $venvPath = Join-Path $scriptDir "venv\Scripts\Activate.ps1"
-    $scriptPath = Join-Path $scriptDir "pii.py"
-    
-    # Activate the virtual environment
-    & $venvPath
-
-    # Run the Python script with any passed arguments
-    & python $scriptPath $args
-
-    # Deactivate the virtual environment
-    deactivate
+    & "$DIR\venv\Scripts\python.exe" "$DIR\pii.py" $args
 }
-'@
+"@
 
 # Ensure that the PowerShell profile exists
 if (-not (Test-Path -Path $PROFILE)) {
@@ -75,7 +66,7 @@ if (-not (Get-Content -Path $PROFILE | Select-String -Pattern 'function pii')) {
     # Add the function definition to the PowerShell profile
     Add-Content -Path $PROFILE -Value $functionDefinition
     Write-Host "pii function added to your profile."
-    Write-Host "Setup complete. Please restart your PowerShell session or run '. $PROFILE' to apply the changes."
+    Write-Host "Setup complete. Please restart your PowerShell session or run `. $PROFILE` to apply the changes."
 }
 else {
     Write-Host "pii function already exists in your profile"
